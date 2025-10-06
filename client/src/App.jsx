@@ -25,6 +25,10 @@ function App() {
     return dark ? darkClass : lightClass;
   };
 
+  // The MobileNavBar is about 5.5rem (h-14 + margins/shadow) high.
+  // We use Tailwind's p-24 (6rem) to ensure padding is applied correctly.
+  const contentPaddingBottom = "pb-24 md:pb-5"; // Added responsive padding
+
   return (
     // Apply the theme class to the main container
     <div
@@ -38,6 +42,8 @@ function App() {
         getThemeClass={getThemeClass}
         theme={theme}
         themeIcons={themeIcons}
+        // 🌟 Passing padding class to Home component
+        paddingBottomClass={contentPaddingBottom}
       />
 
       {/* 🌟 New: Mobile Navigation Bar */}

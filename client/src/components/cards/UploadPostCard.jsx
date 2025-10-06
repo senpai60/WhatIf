@@ -4,7 +4,7 @@ import styled from "styled-components";
 const UploadPostCard = () => {
   return (
     <StyledWrapper>
-      <div className="w-full flex justify-center items-center">
+      <div className="w-full flex justify-center items-center pt-20">
         <div className="container_chat_bot w-full px-5 mt-2 md:w-1/3">
           <div className="container-chat-options">
             <div className="chat">
