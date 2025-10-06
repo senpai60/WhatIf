@@ -1,10 +1,7 @@
-// App.js
 import React, { useState } from "react";
-import Navbar from "./components/layouts/Navbar";
-import { HiMoon, HiOutlineSun } from "react-icons/hi"; // Combined import
-import PostCard from "./components/cards/PostCard";
-import UploadPostCard from "./components/cards/UploadPostCard";
+import { HiMoon, HiOutlineSun } from "react-icons/hi";
 import Home from "./components/layouts/Home";
+import MobileNavBar from "./components/layouts/MobileNavBar"; 
 
 function App() {
   // 🌟 Theme ko 'dark' par initialize kiya
@@ -42,6 +39,9 @@ function App() {
         theme={theme}
         themeIcons={themeIcons}
       />
+
+      {/* 🌟 New: Mobile Navigation Bar */}
+      <MobileNavBar dark={dark} />
     </div>
   );
 }

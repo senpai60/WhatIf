@@ -12,11 +12,13 @@ function Home({ toggleTheme, getThemeClass, theme, themeIcons }) {
         currentTheme={theme}
         themeIcons={themeIcons}
       />
-      <UploadPostCard getThemeClass={getThemeClass} key="upload-post-card" />
-      <PostCard getThemeClass={getThemeClass} post={{ _id: 1 }} />
-      <PostCard getThemeClass={getThemeClass} post={{ _id: 2 }} />
-      <PostCard getThemeClass={getThemeClass} post={{ _id: 3 }} />
-      <PostCard getThemeClass={getThemeClass} post={{ _id: 4 }} />
+      <div className="px-5 pt-20">
+        <UploadPostCard getThemeClass={getThemeClass} key="upload-post-card" />
+        <PostCard getThemeClass={getThemeClass} post={{ _id: 1 }} />
+        <PostCard getThemeClass={getThemeClass} post={{ _id: 2 }} />
+        <PostCard getThemeClass={getThemeClass} post={{ _id: 3 }} />
+        <PostCard getThemeClass={getThemeClass} post={{ _id: 4 }} />
+      </div>
     </div>
   );
 }
