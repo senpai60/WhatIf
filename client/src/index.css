@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* This section defines the DARK theme colors */
+  --dark-bg: #040D12;
+  --dark-mat: #092028;
+  --dark-text: #99a4aa;
+
+  /* This section defines the LIGHT theme colors */
+  --light-bg: #b4d9ce;
+  --light-mat: #cce3da;
+  --light-text: #092028;
+}
+
+/* --- DARK THEME CLASSES (Used when 'dark' state is true) --- */
+.dark-bg {
+  background: var(--dark-bg);
+}
+.dark-text {
+  color: var(--dark-text);
+}
+.dark-materials {
+  background-color: var(--dark-mat);
+}
+/* The button material class is needed for the toggle button */
+.dark-material {
+  background-color: var(--dark-mat);
+}
+
+/* --- LIGHT THEME CLASSES (Used when 'dark' state is false) --- */
+.light-bg {
+  background: var(--light-bg);
+}
+.light-text {
+  color: var(--light-text);
+}
+.light-materials {
+  background-color: var(--light-mat);
+}
+/* The button material class is needed for the toggle button */
+.light-material {
+  background-color: var(--light-mat);
+}
+
+.poppins{
+  font-family: "Poppins", sans-serif;
+}
+.monton{
+  font-family: "Monoton", sans-serif;
+}
