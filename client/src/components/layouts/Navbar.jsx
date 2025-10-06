@@ -1,61 +1,52 @@
 // components/Navbar.js
-import { useGSAP } from "@gsap/react";
-import React, { useRef, useCallback } from "react"; // useCallback import kiya
+import React, { useRef, useCallback } from "react";
 import { HiMenuAlt1, HiX } from "react-icons/hi";
+import { Link } from "react-router-dom"; // ✅ Import Link for routing
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-// Destructure the required props:
 function Navbar({ toggleTheme, getThemeClass, currentTheme, themeIcons }) {
-  // 🌟 Sidebar container ke liye ref
   const navContainerRef = useRef(null);
-
-  // Determine which icon to display based on the *current* theme
   const IconToDisplay = themeIcons[currentTheme];
 
-  // 🌟 Sidebar kholne ka function (Component scope mein)
   const openNavlinks = useCallback(() => {
     if (navContainerRef.current) {
       gsap.to(navContainerRef.current, {
-        x: "0%", // -100% se 0% tak move karega
+        x: "0%",
         duration: 0.5,
         ease: "power2.out",
       });
     }
   }, []);
 
-  // 🌟 Sidebar bandh karne ka function (Component scope mein)
   const closeNavlinks = useCallback(() => {
     if (navContainerRef.current) {
       gsap.to(navContainerRef.current, {
-        x: "-100%", // wapas -100% par chala jayega
+        x: "-100%",
         duration: 0.5,
         ease: "power2.in",
       });
     }
   }, []);
 
-  // useGSAP ka kaam sirf GSAP library ko initialize karna hai (agar zaroori ho)
-  // Animation logic ab directly functions mein hai.
   useGSAP(() => {
-    // Agar future mein koi complex setup chahiye ho toh yahan kar sakte hain
+    // Placeholder for GSAP initialization if needed
   }, []);
 
   return (
     <>
       {/* 🌟 FULL-SCREEN SIDEBAR/NAV LINKS CONTAINER 🌟 */}
       <div
-        ref={navContainerRef} // 🌟 ref attach kiya
-        // w-full aur h-dvh se full screen coverage
+        ref={navContainerRef}
         className={`w-full h-dvh fixed z-[999] top-0 flex flex-col items-center justify-center ${getThemeClass(
           "light-material",
           "dark-material"
         )} shadow-xl`}
-        // Initial position set: screen se bahar (left)
         style={{ transform: "translateX(-100%)" }}
       >
-        {/* Close Button - TOP-LEFT par position kiya gaya */}
+        {/* Close Button */}
         <button
-          onClick={closeNavlinks} // 🌟 Direct function call
+          onClick={closeNavlinks}
           className={`absolute top-4 left-4 text-3xl p-2 rounded-full transition-colors ${getThemeClass(
             "light-text",
             "dark-text"
@@ -64,33 +55,39 @@ function Navbar({ toggleTheme, getThemeClass, currentTheme, themeIcons }) {
           <HiX />
         </button>
 
-        {/* Navigation Links - Center mein aligned */}
+        {/* Navigation Links */}
         <nav className="flex flex-col w-full items-center">
-          {/* Links click hone par closeNavlinks call karein */}
-          {["home", "faq", "settings", "friends", "logout"].map((text, i) => (
-            <a
-              key={text}
-              href="#"
+          {[
+            { text: "home", path: "/" },
+            { text: "faq", path: "/faq" },
+            { text: "settings", path: "/settings" },
+            { text: "friends", path: "/friends" },
+            { text: "logout", path: "/logout" },
+          ].map((link, i) => (
+            <Link
+              key={link.text}
+              to={link.path}
               onClick={closeNavlinks}
-              className={`text-4xl poppins font-semibold capitalize py-6 transition-colors hover:opacity-70 ${i==4?"text-red-500 mt-10":""}`}
+              className={`text-4xl poppins font-semibold capitalize py-6 transition-colors hover:opacity-70 ${
+                i === 4 ? "text-red-500 mt-10" : ""
+              }`}
             >
-              {text}
-            </a>
+              {link.text}
+            </Link>
           ))}
-          
         </nav>
       </div>
 
       {/* 🌟 MAIN NAVBAR 🌟 */}
       <div
-        className={`fixed top-0 lef-0 z-10 w-full h-16 flex items-center justify-between px-5 ${getThemeClass(
+        className={`fixed top-0 left-0 z-10 w-full h-16 flex items-center justify-between px-5 ${getThemeClass(
           "light-material",
           "dark-material"
         )} shadow-md`}
       >
-        {/* Menu Button - openNavlinks call karega */}
+        {/* Menu Button */}
         <button
-          onClick={openNavlinks} // 🌟 Direct function call
+          onClick={openNavlinks}
           className={`text-2xl p-2 rounded-full transition-colors ${getThemeClass(
             "light-text",
             "dark-text"
@@ -101,7 +98,7 @@ function Navbar({ toggleTheme, getThemeClass, currentTheme, themeIcons }) {
 
         <h1 className="text-2xl monton">WhatIfLab</h1>
 
-        {/* 🌟 THEME TOGGLE BUTTON 🌟 */}
+        {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
           className={`${getThemeClass(

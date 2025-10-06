@@ -100,7 +100,7 @@ const StyledWrapper = styled.div`
   .action-label, .action-button {
     display: flex;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem .8rem;
     border-radius: 0.5rem;
     cursor: pointer;
     background-color: var(--mat-bg);
