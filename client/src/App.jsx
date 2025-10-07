@@ -4,6 +4,8 @@ import { HiMoon, HiOutlineSun } from "react-icons/hi";
 import Home from "./components/layouts/Home";
 import MobileNavBar from "./components/layouts/MobileNavBar";
 import Settings from "./components/layouts/Settings";
+import Profile from "./components/layouts/Profile"; 
+import EditProfile from "./components/layouts/EditProfile"; // 🌟 New: EditProfile Import Kiya
 
 // 🌟 Import Lenis for Awwwards-like smooth scrolling
 import Lenis from "@studio-freight/lenis";
@@ -21,9 +23,9 @@ function App() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Popular easing for fluid momentum
       direction: 'vertical',
       gestureDirection: 'vertical',
-      smoothTouch: false, // Set to true for smoother touch scrolling on mobile
+      smoothTouch: false, 
       smooth: true,
-      mouseMultiplier: 1, // Controls how much the mouse wheel scrolls
+      mouseMultiplier: 1, 
     });
 
     // 2. Define the animation loop to drive the scroll
@@ -39,7 +41,7 @@ function App() {
     return () => {
       lenis.destroy();
     };
-  }, []); // Run only once on component mount
+  }, []); 
 
   // Theme Logic
   const themeIcons = { dark: <HiOutlineSun />, light: <HiMoon /> };
@@ -56,45 +58,28 @@ function App() {
     return dark ? darkClass : lightClass;
   };
 
-  const contentPaddingBottom = "pb-24 md:pb-5";
+  const paddingBottomClass = "pb-24 md:pb-5"; // Corrected variable name
+
+  // Reusable prop object for cleaner routing
+  const themeProps = { toggleTheme, getThemeClass, theme, themeIcons, paddingBottomClass };
 
   return (
-    // Lenis manages the viewport, so we can use a standard outer div
-    <div>
-      <div
-        className={`${getThemeClass("light-bg", "dark-bg")} ${getThemeClass(
-          "light-text",
-          "dark-text"
-        )} min-h-screen`}
-      >
+    <div
+      className={`${getThemeClass("light-bg", "dark-bg")} ${getThemeClass(
+        "light-text",
+        "dark-text"
+      )} min-h-screen`}
+    >
+      <div> 
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                toggleTheme={toggleTheme}
-                getThemeClass={getThemeClass}
-                theme={theme}
-                themeIcons={themeIcons}
-                paddingBottomClass={contentPaddingBottom}
-              />
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <Settings
-                toggleTheme={toggleTheme}
-                getThemeClass={getThemeClass}
-                theme={theme}
-                themeIcons={themeIcons}
-                paddingBottomClass={contentPaddingBottom}
-              />
-            }
-          />
+          <Route path="/" element={<Home {...themeProps} />} />
+          <Route path="/settings" element={<Settings {...themeProps} />} />
+          <Route path="/profile" element={<Profile {...themeProps} />} /> 
+          {/* 🌟 New Route Added */}
+          <Route path="/edit-profile" element={<EditProfile {...themeProps} />} />
         </Routes>
 
-        {/* 🌟 Mobile Navigation Bar (visible on all routes) */}
+        {/* Mobile Navigation Bar */}
         <MobileNavBar dark={dark} />
       </div>
     </div>

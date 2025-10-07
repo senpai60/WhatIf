@@ -43,7 +43,7 @@ const MobileNavBar = ({ dark = false }) => {
         { path: ExploreIconPath, label: "Explore", isCenter: false, iconStroke: true, to: "/explore" }, 
         { path: AddIconPath, label: "Add", isCenter: true, iconStroke: true, to: "/add" }, 
         { path: NotificationIconPath, label: "Notifications", isCenter: false, iconStroke: true, to: "/notifications" }, 
-        { path: ProfileIconPath, label: "Profile", isCenter: false, iconStroke: true, to: "/profile" }, 
+        { path: ProfileIconPath, label: "Profile", isCenter: false, iconStroke: true, to: "/profile" }, // 🌟 Link /profile set
     ];
 
     const themeStyles = {
